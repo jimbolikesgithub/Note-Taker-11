@@ -37,7 +37,8 @@ package.json -
 * Package.json includes express, path, and uuid
 
 https://github.com/jimbolikesgithub/Note-Taker-11
-
+![Video](https://drive.google.com/file/d/1jL8wncZXSnT9RQ36Gd77HCvPy4cOoZlL/view?usp=sharing)
+![Note-Taker-Sreenshot](https://user-images.githubusercontent.com/97565085/164874164-96992ea1-0a15-4319-8a31-08ee74cfc1b8.png)
 
 Acknowledgements
 ----------------
