@@ -8,8 +8,13 @@ const app = express();
 
 // Unassigned port OR 3001
 const PORT = process.env.port || 3001;
+
+// uuid is how you generate the id for node
+
 // _____________________________________________________________________________________________
-// Express app handles data parsing
+// Express app handles data parsing (middleware)
+// Allows for the implementation of custom/depedant softwares
+// 'app.use(express.urlencoded({ extended: true}));' allows us to pass data through the url 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 // _____________________________________________________________________________________________
@@ -53,3 +58,6 @@ app.listen(PORT, () =>
 // - KILL server (ctrl + c)
 
 // note: You MUST kill any other running terminals (only ONE AT A TIME)
+
+// note: GET is GETING information FROM the DATABASE
+// note: POST is POSTING information FROM the DATABASE
