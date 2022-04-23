@@ -35,11 +35,11 @@ const getNotes = () =>
     },
   })
     .then((response) => response.json())
-    .then((data) => data)
+    .then((data) => renderNoteList(data))
     .catch((err) => {
       console.error('You have an error here:', err);
     });
-// _____________________________________________________________________________________________
+// _________________________________________________
 const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
@@ -54,13 +54,13 @@ const saveNote = (note) =>
     .then((data) => {
       // Gives the alert in the Window
       alert(data);
-      // ...SHOULD be shown to the screen
+      // Now SHOWS to the screen (sadly, I have to rerun the page to do so...)
       show(note);
     })
     .catch((err) => {
       console.error('You have an error here:', err)
     })
-// _____________________________________________________________________________________________
+// _________________________________________________
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
@@ -137,8 +137,8 @@ const handleRenderSaveBtn = () => {
 };
 
 // Render the list of note titles
-const renderNoteList = async (notes) => {
-  let jsonNotes = await notes.json();
+const renderNoteList = async (jsonNotes) => {
+  // let jsonNotes = await notes.json();
   if (window.location.pathname === '/notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
@@ -191,7 +191,7 @@ const renderNoteList = async (notes) => {
 };
 
 // Gets notes from the db and renders them to the sidebar
-const getAndRenderNotes = () => getNotes().then(renderNoteList);
+// const getAndRenderNotes = () => getNotes().then(renderNoteList);
 
 if (window.location.pathname === '/notes') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
@@ -200,4 +200,4 @@ if (window.location.pathname === '/notes') {
   noteText.addEventListener('keyup', handleRenderSaveBtn);
 }
 
-getAndRenderNotes();
+getNotes();
