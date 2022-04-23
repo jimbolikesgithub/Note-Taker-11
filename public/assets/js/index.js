@@ -92,7 +92,8 @@ const handleNoteSave = () => {
     text: noteText.value,
   };
   saveNote(newNote).then(() => {
-    getAndRenderNotes();
+    // Note is saved
+    getNotes();
     renderActiveNote();
   });
 };
@@ -103,14 +104,15 @@ const handleNoteDelete = (e) => {
   e.stopPropagation();
 
   const note = e.target;
-  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
+  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).note_id;
 
   if (activeNote.id === noteId) {
     activeNote = {};
   }
 
   deleteNote(noteId).then(() => {
-    getAndRenderNotes();
+    // changed to getNotes(); to delete from database and page
+    getNotes();
     renderActiveNote();
   });
 };

@@ -68,6 +68,4 @@ module.exports = notes;
 // _____________________________________________________________________________________________
 // WANT IT SO THAT, WHEN SAVE BUTTON CLICKED...
 // ...ACCESS API ROUTE AND DISPLAY CONTENT TO PAGE
-// Steps to do this
-// 1. Make API Route on Server Side
-// 2. 
+// Make API Route on Server Side
