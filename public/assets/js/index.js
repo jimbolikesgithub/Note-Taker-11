@@ -48,9 +48,13 @@ const saveNote = (note) =>
     },
     body: JSON.stringify(note),
   })
+    // Response in json format
     .then((response) => response.json())
+    // The data...
     .then((data) => {
+      // Gives the alert in the Window
       alert(data);
+      // ...SHOULD be shown to the screen
       show(note);
     })
     .catch((err) => {
