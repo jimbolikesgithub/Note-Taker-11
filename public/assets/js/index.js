@@ -24,7 +24,7 @@ const hide = (elem) => {
 
 // activeNote is used to keep track of the note in the textarea
 let activeNote = {};
-
+// _____________________________________________________________________________________________
 // -- UPDATING THESE --
 // FETCH REQUESTS (needs a path and parameter)
 const getNotes = () =>
@@ -33,9 +33,13 @@ const getNotes = () =>
     headers: {
       'Content-Type': 'application/json',
     },
-  });
-
-// 
+  })
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch((err) => {
+      console.error('You have an error here:', err);
+    });
+// _____________________________________________________________________________________________
 const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
@@ -43,8 +47,16 @@ const saveNote = (note) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
-  });
-
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      alert(data);
+      show(note);
+    })
+    .catch((err) => {
+      console.error('You have an error here:', err)
+    })
+// _____________________________________________________________________________________________
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
     method: 'DELETE',
@@ -53,7 +65,7 @@ const deleteNote = (id) =>
     },
   });
 // -- UPDATING THESE --
-
+// _____________________________________________________________________________________________
 const renderActiveNote = () => {
   hide(saveNoteBtn);
 

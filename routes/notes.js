@@ -5,7 +5,7 @@ const notes = require('express').Router();
 // uuid is how you generate the id for node
 const { v4: uuidv4 } = require('uuid');
 const { readAndAppend, writeToFile, readFromFile } = require('../helpers/helper.js');
-
+// _____________________________________________________________________________________________
 // GET Route for retrieving all notes
 notes.get('/', (req, res) => {
     readFromFile('./db/db.json')
@@ -13,7 +13,7 @@ notes.get('/', (req, res) => {
         res.json(JSON.parse(data))
     );
 });
-
+// _____________________________________________________________________________________________
 // GET Route for a specific note
 notes.get('/:note_id', (req, res) => {
     const noteID = req.params.note_id;
@@ -26,6 +26,20 @@ notes.get('/:note_id', (req, res) => {
     });
 });
 
+// DELETE Route for a specific note (bonus)
+notes.delete('/:note_id', (req, res) => {
+    const noteID = req.params.note_id;
+    readFromFile('./db/db.json')
+    .then((data) => JSON.parse(data))
+    .then((json) => {
+        const deletion = json.filter((note) => note.note_id !== noteID);
+
+        writeToFile('./db/db.json', deletion);
+
+        res.json('Your note has been discarded.')
+    })
+})
+// _____________________________________________________________________________________________
 // POST Route for a new UX/UI note
 notes.post('/', (req, res) => {
     // '.body' represents the DATA that is passed from the client-side
@@ -46,12 +60,11 @@ notes.post('/', (req, res) => {
         res.error('Could not add new note.')
     }
 })
+// _____________________________________________________________________________________________
 
-// DELETE Route for a specific note (bonus)
 
+// _____________________________________________________________________________________________
 module.exports = notes;
-
-
 // _____________________________________________________________________________________________
 // WANT IT SO THAT, WHEN SAVE BUTTON CLICKED...
 // ...ACCESS API ROUTE AND DISPLAY CONTENT TO PAGE

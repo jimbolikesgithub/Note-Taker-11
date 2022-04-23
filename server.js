@@ -9,9 +9,6 @@ const app = express();
 
 // Unassigned port OR 3001
 const PORT = process.env.port || 3001;
-
-// uuid is how you generate the id for node
-
 // _____________________________________________________________________________________________
 // Express app handles data parsing (middleware)
 // Allows for the implementation of custom/depedant softwares
