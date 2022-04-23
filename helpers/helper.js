@@ -12,8 +12,11 @@ const readFromFile = util.promisify(fs.readFile);
  *  @returns {void} Nothing
  */
 
+// Writing data to JSON file when given a destination and content
 const writeToFile = (destination, content) =>
+    // Using file system to write a file when given a destination, and converting values of content into strings
     fs.writeFile(destination, JSON.stringify(content, null, 4), (err) => 
+        // IF error, console log the error... ELSE, if no all runs as expected, console log the following string
         err ? console.error(err) : console.info(`\nThe data has been written here: ${destination}`)
     );
 
@@ -24,16 +27,24 @@ const writeToFile = (destination, content) =>
  *  @returns {void} Nothing
  */
 
+// Reads file, then...
 const readAndAppend = (content, file) => {
     fs.readFile(file, 'utf8', (err, data) => {
+        // ...IF there's an error...
         if (err) {
+            // ...console log the error...
             console.error(err);
+            // ...ELSE...
         } else {
+            // ...the data (strings) are parsed in a JSON format, added to a new variable, and then...
             const parsedData = JSON.parse(data);
+            // ...that variable's content is pushed...
             parsedData.push(content);
+            // ...and to the file is appended the data
             writeToFile(file, parsedData);
         }
     });
 };
 
+// Exporting functions
 module.exports = { readAndAppend, writeToFile, readFromFile };

@@ -3,7 +3,8 @@ const express = require('express');
 // Native node library
 const path = require('path');
 const dbData = require('./db/db.json');
-// Calling express method
+const api = require('./routes/index.js')
+// Calling Express method
 const app = express();
 
 // Unassigned port OR 3001
@@ -17,6 +18,8 @@ const PORT = process.env.port || 3001;
 // 'app.use(express.urlencoded({ extended: true}));' allows us to pass data through the url 
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
+// STILL TAKES ME TO NOTES WITHOUT BREAKING
+app.use('/api', api);
 // _____________________________________________________________________________________________
 // Location (folder) of front-end files
 app.use(express.static('public'));

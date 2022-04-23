@@ -8,7 +8,7 @@ const { readAndAppend, writeToFile, readFromFile } = require('../helpers/helper.
 
 // GET Route for retrieving all notes
 notes.get('/', (req, res) => {
-    readFromFile('./db/tips.json')
+    readFromFile('./db/db.json')
     .then((data) => 
         res.json(JSON.parse(data))
     );
@@ -17,7 +17,7 @@ notes.get('/', (req, res) => {
 // GET Route for a specific note
 notes.get('/:note_id', (req, res) => {
     const noteID = req.params.note_id;
-    readFromFile('./db/tips.json')
+    readFromFile('./db/db.json')
     .then((data) => JSON.parse(data))
     .then((json) => {
         const result = json.filter((note) => note.note_id === noteID);
@@ -46,8 +46,8 @@ notes.post('/', (req, res) => {
         res.error('Could not add new note.')
     }
 })
-// DELETE Route for a specific note (bonus)
 
+// DELETE Route for a specific note (bonus)
 
 module.exports = notes;
 
